@@ -1,0 +1,44 @@
+/* Sara Larocca Wellness — shared styles */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+[hidden]{display:none !important}
+body{margin:0;background:#1C2117}
+*,*::before,*::after{box-sizing:border-box}
+img{max-width:100%}
+h1,h2,h3{text-wrap:balance}
+a{color:#E7B867}a:hover{color:#F2CD8A}
+[id]{scroll-margin-top:84px}
+summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] .faq-plus{transform:rotate(45deg)}
+.grain{position:relative}
+.grain::after{content:"";position:absolute;inset:0;background-image:url(../img/grain.png);background-size:256px 256px;opacity:.08;pointer-events:none;z-index:20}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #E7B867;outline-offset:3px}
+@media (max-width: 760px){ .nav-links{display:none !important} }
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+/* placeholders still to fill in */
+mark.todo{background:transparent;color:inherit;border-bottom:1px dashed currentColor}
+
+/* session flow tabs */
+.flow-tab{min-height:44px;padding:0 2px;background:transparent;border:0;border-bottom:2px solid transparent;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:300;font-size:24px;color:#B5AC96;cursor:pointer}
+.flow-tab[aria-pressed="true"]{color:#EFE7D6;border-bottom-color:#D9A441}
+
+/* booking request form */
+.booking-card{background:#1C2117;border:1px solid #3A4430;border-radius:6px;padding:32px;display:flex;flex-direction:column;gap:22px}
+.booking-card fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.booking-card legend{padding:0;width:100%}
+.pick{position:relative;display:inline-flex}
+.pick input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.pick span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:3px;border:1px solid #5B6A4C;color:#EFE7D6;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.pick input:checked + span{background:#D9A441;border-color:#D9A441;color:#1C2117}
+.pick input:focus-visible + span{outline:2px solid #E7B867;outline-offset:3px}
+.booking-card .row{display:flex;flex-wrap:wrap;gap:22px}
+.booking-card .row .field{flex:1 1 220px;min-width:0}
+.booking-card input[type=text],.booking-card input[type=email],.booking-card input[type=tel],.booking-card textarea{width:100%;min-height:50px;border-radius:3px;border:1px solid #4A5540;background:#262D20;color:#EFE7D6;padding:12px 16px;font:inherit;font-size:16px}
+.booking-card textarea{resize:vertical;min-height:110px}
+.booking-card ::placeholder{color:#8E8672}
+.booking-card .opt{text-transform:none;letter-spacing:0;color:#8E8672}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;border-top:1px solid #3A4430;padding-top:22px}
+.btn-solid{min-height:52px;border-radius:3px;border:0;background:#D9A441;color:#1C2117;padding:0 28px;font:inherit;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.btn-solid:hover{background:#E7B867}
+.cal-embed{width:100%;min-height:640px;border-radius:6px;overflow:hidden}
