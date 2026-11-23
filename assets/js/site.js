@@ -7,10 +7,10 @@ var CONFIG = {
   // When Sara's Cal.com account is ready, put her Cal.com link here,
   // e.g. "saralarocca" (shows both session types) or "saralarocca/in-person".
   // Leave it empty to keep the "request a time" form.
-  calLink: "",
+  calLink: "saralaroccawellness",
 
   // The two session types in Cal.com (the last part of each session's link).
-  calEvents: { "in-person": "in-person", "distance": "distance" }
+  calEvents: { "in-person": "biofield-tuning-in-person", "distance": "biofield-tuning-distance" }
 };
 
 (function () {
