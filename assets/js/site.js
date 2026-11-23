@@ -2,7 +2,7 @@
 var CONFIG = {
   // Sara's email address. Booking requests and newsletter sign-ups are sent here
   // (through the visitor's own email app) until Cal.com / a newsletter tool is connected.
-  email: "hej@saralaroccawellness.com",
+  email: "hello@saralaroccawellness.com",
 
   // When Sara's Cal.com account is ready, put her Cal.com link here,
   // e.g. "saralarocca" (shows both session types) or "saralarocca/in-person".
