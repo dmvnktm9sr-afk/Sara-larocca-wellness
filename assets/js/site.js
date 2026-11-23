@@ -79,6 +79,20 @@ var CONFIG = {
     });
   }
 
+  // Colours for the Cal.com calendar, matched to the page
+  var CAL_LOOK = {
+    "cal-brand": "#6A4541", "cal-brand-emphasis": "#573834", "cal-brand-text": "#F4E8D2",
+    "cal-brand-subtle": "#E2C3B6", "cal-brand-accent": "#F4E8D2",
+    "cal-text": "#4A4630", "cal-text-emphasis": "#3E3B26", "cal-text-subtle": "#6B6650",
+    "cal-text-muted": "#8C8670", "cal-text-inverted": "#F4E8D2",
+    "cal-bg": "#F7EEDD", "cal-bg-emphasis": "#E8D7C8", "cal-bg-subtle": "#EFE3CC",
+    "cal-bg-muted": "#F2E6CF", "cal-bg-inverted": "#3E3B26",
+    "cal-border": "rgba(86,83,51,0.28)", "cal-border-emphasis": "#565333",
+    "cal-border-subtle": "rgba(86,83,51,0.2)", "cal-border-muted": "rgba(86,83,51,0.12)",
+    "cal-border-booker": "rgba(86,83,51,0)", "cal-border-booker-width": "0px",
+    "radius": "2px"
+  };
+
   // Cal.com booking, once a link is configured
   if (CONFIG.calLink) {
     var calBox = document.getElementById('cal-box');
@@ -102,7 +116,7 @@ var CONFIG = {
           calLink: CONFIG.calLink + '/' + (CONFIG.calEvents[kind] || kind),
           config: { theme: "light", layout: "month_view" }
         });
-        Cal.ns[ns]("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#6A4541" } }, hideEventTypeDetails: false, layout: "month_view" });
+        Cal.ns[ns]("ui", { theme: "light", hideEventTypeDetails: true, layout: "month_view", cssVarsPerTheme: { light: CAL_LOOK } });
       };
       calBox.querySelectorAll('input[name="cal-session"]').forEach(function (r) {
         r.addEventListener('change', function () { if (r.checked) showCal(r.value); });
