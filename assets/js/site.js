@@ -7,7 +7,10 @@ var CONFIG = {
   // When Sara's Cal.com account is ready, put her Cal.com link here,
   // e.g. "saralarocca" (shows both session types) or "saralarocca/in-person".
   // Leave it empty to keep the "request a time" form.
-  calLink: ""
+  calLink: "",
+
+  // The two session types in Cal.com (the last part of each session's link).
+  calEvents: { "in-person": "in-person", "distance": "distance" }
 };
 
 (function () {
@@ -78,15 +81,36 @@ var CONFIG = {
 
   // Cal.com booking, once a link is configured
   if (CONFIG.calLink) {
-    var box = document.getElementById('cal-embed');
-    if (form && box) {
-      form.hidden = true; box.hidden = false;
+    var calBox = document.getElementById('cal-box');
+    if (form && calBox) {
+      form.hidden = true; calBox.hidden = false;
       document.querySelectorAll('[data-when="request"]').forEach(function (e) { e.hidden = true; });
       document.querySelectorAll('[data-when="cal"]').forEach(function (e) { e.hidden = false; });
       (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", { origin: "https://cal.com" });
-      Cal("inline", { elementOrSelector: "#cal-embed", calLink: CONFIG.calLink, config: { theme: "light", layout: "month_view", locale: sv ? "sv" : "en" } });
-      Cal("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#6A4541" } }, hideEventTypeDetails: false, layout: "month_view" });
+      var loaded = {};
+      var showCal = function (kind) {
+        document.getElementById('cal-in-person').hidden = kind !== 'in-person';
+        document.getElementById('cal-distance').hidden = kind !== 'distance';
+        var radio = calBox.querySelector('input[value="' + kind + '"]');
+        if (radio) radio.checked = true;
+        if (loaded[kind]) return;
+        loaded[kind] = true;
+        var ns = kind === 'in-person' ? 'inperson' : 'distance';
+        Cal("init", ns, { origin: "https://cal.com" });
+        Cal.ns[ns]("inline", {
+          elementOrSelector: '#cal-' + kind,
+          calLink: CONFIG.calLink + '/' + (CONFIG.calEvents[kind] || kind),
+          config: { theme: "light", layout: "month_view" }
+        });
+        Cal.ns[ns]("ui", { theme: "light", cssVarsPerTheme: { light: { "cal-brand": "#6A4541" } }, hideEventTypeDetails: false, layout: "month_view" });
+      };
+      calBox.querySelectorAll('input[name="cal-session"]').forEach(function (r) {
+        r.addEventListener('change', function () { if (r.checked) showCal(r.value); });
+      });
+      document.querySelectorAll('a[data-session]').forEach(function (a) {
+        a.addEventListener('click', function () { showCal(a.getAttribute('data-session')); });
+      });
+      showCal('in-person');
     }
   }
 })();

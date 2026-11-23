@@ -194,7 +194,15 @@
 <p class="muted" data-when="cal" hidden>Choose a session, a day and a time. You’ll get a confirmation by email, with a link to reschedule if plans change.</p>
 </div>
 <div class="side-box">
-<div id="cal-embed" class="cal-embed" hidden></div>
+<div id="cal-box" class="booking-card" hidden>
+<fieldset>
+<legend>Session</legend>
+<label class="pick"><input type="radio" name="cal-session" value="in-person" checked> <span>In person · Sjuntorp</span></label>
+<label class="pick"><input type="radio" name="cal-session" value="distance"> <span>Distance · Worldwide</span></label>
+</fieldset>
+<div id="cal-in-person" class="cal-embed"></div>
+<div id="cal-distance" class="cal-embed" hidden></div>
+</div>
 <form id="request-form" class="booking-card">
 <fieldset>
 <legend>Session</legend>

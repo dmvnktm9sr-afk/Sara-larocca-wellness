@@ -195,7 +195,8 @@ textarea.line-input{resize:vertical}
 .form-foot em{color:var(--muted)}
 .form-done{margin:0;color:var(--plum);font-style:italic}
 button.btn{font-family:var(--mono)}
-.cal-embed{width:100%;min-height:640px;overflow:auto;background:var(--paper);border:1px solid rgba(86,83,51,.45)}
+.cal-embed{width:100%;min-height:600px;overflow:auto}
+#cal-box{gap:18px}
 
 /* letters + instagram */
 .letters{padding:96px 24px}
